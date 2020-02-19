@@ -15,7 +15,6 @@ public class UserControllerImpl implements UserController {
 
     @GetMapping("/api/user")
     public UserDTO getUser(@RequestParam(value = "userID") String userID){ // TODO add Exception
-        //System.out.println("userID: "+ userID);
         UserDTO userDTO  = userClientService.getUser(userID);
         return userDTO;
     }
