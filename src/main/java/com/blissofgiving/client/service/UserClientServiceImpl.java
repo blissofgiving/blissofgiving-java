@@ -1,6 +1,8 @@
 package com.blissofgiving.client.service;
 
 import com.blissofgiving.client.dto.UserDTO;
+import com.blissofgiving.exception.BlissofgivingClientException;
+import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
 import com.blissofgiving.model.User;
 import com.blissofgiving.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -14,9 +16,14 @@ public class UserClientServiceImpl implements  UserClientService {
     UserService userService;
 
     @Override
-    public UserDTO getUser(String userID) {
+    public UserDTO getUser(String username) throws BlissofgivingClientException {
 
-        User user  = userService.getUser(userID);
+        User user  = null;
+        try {
+            user = userService.getUser(username);
+        } catch (BlissofgivingRecordNotFoundException e) {
+            throw new BlissofgivingClientException("User not found: " + e.getMessage());
+        }
 
         UserDTO userDTO = new UserDTO();
 

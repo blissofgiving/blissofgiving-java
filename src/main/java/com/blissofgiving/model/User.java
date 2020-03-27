@@ -1,23 +1,39 @@
 package com.blissofgiving.model;
 
-public class User {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-    private String userGUID;
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+@Document(collection = "USER")
+public class User implements Serializable {
+
+    @Id
+    private String userSysGUID;
     private String userType;
-    private String userID;
+    private String username;
     private String password;
     private String firstName;
     private String lastName;
+    private String middleName;
     private String emailID;
     private Long phoneNumber;
-    private String Address;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String country;
+    private String postal;
+    private String lastUpdateUser;
+    private Timestamp lastUpdateTimestamp;
 
-    public String getUserGUID() {
-        return userGUID;
+    public String getUserSysGUID() {
+        return userSysGUID;
     }
 
-    public void setUserGUID(String userGUID) {
-        this.userGUID = userGUID;
+    public void setUserSysGUID(String userSysGUID) {
+        this.userSysGUID = userSysGUID;
     }
 
     public String getUserType() {
@@ -28,12 +44,12 @@ public class User {
         this.userType = userType;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -60,6 +76,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
     public String getEmailID() {
         return emailID;
     }
@@ -76,11 +100,67 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return Address;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPostal() {
+        return postal;
+    }
+
+    public void setPostal(String postal) {
+        this.postal = postal;
+    }
+
+    public String getLastUpdateUser() {
+        return lastUpdateUser;
+    }
+
+    public void setLastUpdateUser(String lastUpdateUser) {
+        this.lastUpdateUser = lastUpdateUser;
+    }
+
+    public Timestamp getLastUpdateTimestamp() {
+        return lastUpdateTimestamp;
+    }
+
+    public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
+        this.lastUpdateTimestamp = lastUpdateTimestamp;
     }
 }

@@ -1,18 +1,33 @@
 package com.blissofgiving.service;
 
+import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
 import com.blissofgiving.model.User;
+import com.blissofgiving.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Override
-    public User getUser(String userID) {
+    @Autowired
+    UserRepository repository;
 
-        User user = new User(); //TODO temp
-        user.setFirstName("Bliss");
-        user.setLastName("Giving");
-        user.setUserID(userID);
-        return user;
+    @Override
+    public User getUser(String username) throws BlissofgivingRecordNotFoundException {
+        List<User> users = repository.findByUsername(username);
+        if(users == null || users.size() <= 0)
+            throw new BlissofgivingRecordNotFoundException("No record found for user: "+ username);
+        return users.get(0);
+//        User user =  new User();
+//        user.setUsername("bliss");
+//        user.setPassword("bliss");
+//        return user;
+    }
+
+    @Override
+    public void saveUser(User user) {
+        repository.save(user);
     }
 }

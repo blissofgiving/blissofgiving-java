@@ -1,0 +1,4 @@
+
+ksquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ύ‡ƒόÿÿÿÿ8ττ‚Ά.
+{squid:S1488"_Immediately return this expression instead of assigning it to the temporary variable "userDTO".(έ½¬αϊÿÿÿÿ
+Α%squid:RedundantThrowsDeclarationCheck"ƒRemove the declaration of thrown exception 'com.blissofgiving.exception.BlissofgivingClientException' which is a runtime exception.(άΑµωÿÿÿÿ8§ξ’Ά.
