@@ -46,7 +46,7 @@ public class JWTUtil {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 30 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + 3000 * 60))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
                 .compact();
     }

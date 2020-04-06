@@ -20,10 +20,6 @@ public class UserServiceImpl implements UserService {
         if(users == null || users.size() <= 0)
             throw new BlissofgivingRecordNotFoundException("No record found for user: "+ username);
         return users.get(0);
-//        User user =  new User();
-//        user.setUsername("bliss");
-//        user.setPassword("bliss");
-//        return user;
     }
 
     @Override
