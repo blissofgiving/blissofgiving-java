@@ -55,3 +55,5 @@ a
 Wsrc/main/java/com/blissofgiving/config/security/BlissofgivingUserDetailServiceImpl.java,8/b/8bdf1564bc896cdafbc0a97947f70f4577da4551
 v
 Fsrc/main/java/com/blissofgiving/filter/BlissofgivingRequestFilter.java,3/9/39d2aa932a1ffe3c3bd76b7f49b2ea4537b8476c
+c
+3src/main/java/com/blissofgiving/model/UserType.java,6/3/631160ac682b6035d0abe2ab7a17edf9e2d4ce5b
