@@ -42,8 +42,17 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) throws BlissofgivingServiceException, BlissofgivingValidationException {
         // Validate
         userServiceValidator.validateUser(user);
-        // TODO shashi get the user and update only new values
-        //Save in to DB
+        //TODO update only if the user value is null
+        if(user.getUserSysGUID() == null) {
+            try {
+                User userFromDB = getUser(user.getUsername());
+
+                user.setUserSysGUID(userFromDB.getUserSysGUID());
+            } catch (BlissofgivingRecordNotFoundException e) {
+                throw new BlissofgivingServiceException("User is not availbale." + user.getUsername());
+            }
+        }
+        //Save to DB
         User savedUser = repository.save(user);
     }
 

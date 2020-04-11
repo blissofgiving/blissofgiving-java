@@ -44,7 +44,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(path = "/api/rest/v1/user", method = RequestMethod.DELETE)
-    public void deleteUser(String username) throws BlissofgivingClientException {
+    public void deleteUser(@RequestParam(value = "username") String username) throws BlissofgivingClientException {
             userClientService.deleteUser(username);
     }
 }
