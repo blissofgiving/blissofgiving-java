@@ -1,4 +1,4 @@
-package com.blissofgiving.client.controller;
+package com.blissofgiving.client.controller.media;
 
 import com.blissofgiving.client.dto.MediaDTO;
 import com.blissofgiving.service.media.api.MediaService;

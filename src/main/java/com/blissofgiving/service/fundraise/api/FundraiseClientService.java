@@ -13,6 +13,4 @@ public interface FundraiseClientService {
     FundraiseDTO getFundraiseByID(String fundraiseID) throws BlissofgivingClientException;
 
     void deleteFundraise(String fundraiseID) throws BlissofgivingClientException;
-
-    public void createFundraiseComments(List<FundraiseCommentsDTO> fundraiseCommentsDTOList) throws BlissofgivingClientException;
 }
