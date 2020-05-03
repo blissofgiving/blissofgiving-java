@@ -1,14 +1,13 @@
 package com.blissofgiving.client.controller;
 
-import com.blissofgiving.service.PhotoService;
-import com.blissofgiving.service.VideoService;
+import com.blissofgiving.client.dto.MediaDTO;
+import com.blissofgiving.service.media.api.MediaService;
+import com.blissofgiving.service.media.impl.MediaClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RestController
@@ -16,23 +15,20 @@ import java.io.IOException;
 public class MediaController {
 
     @Autowired
-    PhotoService photoService;
-
-    @Autowired
-    VideoService videoService;
+    MediaClientServiceImpl mediaClientService;
 
     @PostMapping("/photos/add")
-    public String addPhoto(@RequestParam("title") String title,
-                           @RequestParam("image") MultipartFile image)
+    public String addPhoto(@RequestBody MediaDTO mediaDTO,final HttpServletRequest request)
             throws IOException {
-        String id = photoService.addPhoto(title, image);
-        return "redirect:/photos/" + id;
+        String lastUpdateduser=request.getUserPrincipal().getName();
+        String shareLink = mediaClientService.addMedia(mediaDTO,MediaClientServiceImpl.TYPE_PHOTO,lastUpdateduser);
+        return shareLink;
     }
 
     @PostMapping("/videos/add")
-    public String addVideo(@RequestParam("title") String title,
-                           @RequestParam("file") MultipartFile file) throws IOException {
-        String id = videoService.addVideo(title, file);
-        return "redirect:/videos/" + id;
+    public String addVideo(@RequestBody MediaDTO mediaDTO,final HttpServletRequest request) throws IOException {
+        String lastUpdateduser=request.getUserPrincipal().getName();
+        String shareLink = mediaClientService.addMedia(mediaDTO,MediaClientServiceImpl.TYPE_VIDEO,lastUpdateduser);
+        return shareLink;
     }
 }
