@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CommentsClientService {
     void createFundraiseComments(List<FundraiseCommentsDTO> fundraiseCommentsDTOList) throws BlissofgivingClientException;
+
+    void createFundraiseComment(FundraiseCommentsDTO fundraiseCommentsDTO) throws BlissofgivingClientException;
 }

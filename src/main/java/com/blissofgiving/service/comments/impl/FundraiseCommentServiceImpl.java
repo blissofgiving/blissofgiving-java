@@ -23,4 +23,13 @@ public class FundraiseCommentServiceImpl implements FundraiseCommentService {
             throw new BlissofgivingServiceException(e);
         }
     }
+
+    @Override
+    public void createFundraiseComment(FundraiseComments fundraiseComment) throws BlissofgivingServiceException {
+        try {
+            fundraiseCommentsRespository.insert(fundraiseComment);
+        } catch (Exception e) {
+            throw new BlissofgivingServiceException(e);
+        }
+    }
 }

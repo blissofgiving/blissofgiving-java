@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 public class MediaDTO {
 
     private String title;
-    private MultipartFile file;
     private String mediaSysGuid;
     private String origin;
     private String sourceSysGuid;
@@ -20,14 +19,6 @@ public class MediaDTO {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
     }
 
     public String getMediaSysGuid() {

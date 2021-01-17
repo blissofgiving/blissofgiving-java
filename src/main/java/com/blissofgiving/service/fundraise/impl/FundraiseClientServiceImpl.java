@@ -10,6 +10,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class FundraiseClientServiceImpl implements FundraiseClientService {
 
@@ -17,10 +21,14 @@ public class FundraiseClientServiceImpl implements FundraiseClientService {
     private FundraiseService fundraiseService;
 
     @Override
-    public String createFundraise(final FundraiseDTO fundRaiseDTO) throws BlissofgivingClientException {
+    public String createFundraise(final FundraiseDTO fundRaiseDTO, String user) throws BlissofgivingClientException {
         String fundraiseSysGuid = null;
         Fundraise fundraise = new Fundraise();
         try {
+            fundRaiseDTO.setCreatedUser(user);
+            fundRaiseDTO.setCreatedTimestamp(new Timestamp(System.currentTimeMillis()));
+            fundRaiseDTO.setLastUpdateUser(user);
+            fundRaiseDTO.setLastUpdateTimestamp(new Timestamp(System.currentTimeMillis()));
             BeanUtils.copyProperties(fundRaiseDTO, fundraise);
             fundraiseSysGuid = fundraiseService.createFundraise(fundraise);
         } catch (BlissofgivingServiceException e) {
@@ -39,6 +47,22 @@ public class FundraiseClientServiceImpl implements FundraiseClientService {
             throw new BlissofgivingClientException(e);
         }
         return fundraiseDTO;
+    }
+
+    @Override
+    public List<FundraiseDTO> getActiveFundraisesByUserName(String fundraiseCreatedUser, Boolean active) throws BlissofgivingClientException {
+        List<FundraiseDTO> fundraiseDTOList = new ArrayList<FundraiseDTO>();
+        try {
+            List<Fundraise> fundraiseList = active ? fundraiseService.getActiveFundraisesByUserName(fundraiseCreatedUser) : fundraiseService.getAllFundraiseByUserName(fundraiseCreatedUser);
+            fundraiseList.stream().forEach(fundraise -> {
+                FundraiseDTO fundraiseDTO = new FundraiseDTO();
+                BeanUtils.copyProperties(fundraise, fundraiseDTO);
+                fundraiseDTOList.add(fundraiseDTO);
+            });
+        } catch (BlissofgivingServiceException e) {
+            throw new BlissofgivingClientException(e);
+        }
+        return fundraiseDTOList;
     }
 
     @Override

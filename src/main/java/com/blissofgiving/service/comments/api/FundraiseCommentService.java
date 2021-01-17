@@ -8,4 +8,6 @@ import java.util.List;
 public interface FundraiseCommentService {
 
     void createFundraiseComments(List<FundraiseComments> fundraiseCommentsList) throws BlissofgivingServiceException;
+
+    void createFundraiseComment(FundraiseComments fundraiseComment) throws BlissofgivingServiceException;
 }

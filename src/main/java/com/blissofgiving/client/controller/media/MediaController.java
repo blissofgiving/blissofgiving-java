@@ -18,17 +18,16 @@ public class MediaController {
     MediaClientServiceImpl mediaClientService;
 
     @PostMapping("/photos/add")
-    public String addPhoto(@RequestBody MediaDTO mediaDTO,final HttpServletRequest request)
-            throws IOException {
+    public String addPhoto(@RequestBody MediaDTO mediaDTO, MultipartFile file,final HttpServletRequest request){
         String lastUpdateduser=request.getUserPrincipal().getName();
-        String shareLink = mediaClientService.addMedia(mediaDTO,MediaClientServiceImpl.TYPE_PHOTO,lastUpdateduser);
+        String shareLink = mediaClientService.addMedia(mediaDTO,MediaClientServiceImpl.TYPE_PHOTO,lastUpdateduser,file);
         return shareLink;
     }
 
     @PostMapping("/videos/add")
-    public String addVideo(@RequestBody MediaDTO mediaDTO,final HttpServletRequest request) throws IOException {
+    public String addVideo(@RequestBody MediaDTO mediaDTO,MultipartFile file,final HttpServletRequest request) {
         String lastUpdateduser=request.getUserPrincipal().getName();
-        String shareLink = mediaClientService.addMedia(mediaDTO,MediaClientServiceImpl.TYPE_VIDEO,lastUpdateduser);
+        String shareLink = mediaClientService.addMedia(mediaDTO,MediaClientServiceImpl.TYPE_VIDEO,lastUpdateduser,file);
         return shareLink;
     }
 }

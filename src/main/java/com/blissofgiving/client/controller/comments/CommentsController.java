@@ -23,4 +23,13 @@ public class CommentsController {
             e.printStackTrace();//TODO Shashi
         }
     }
+
+    @RequestMapping(path = "/api/rest/v1/fundraiseComment", method = RequestMethod.POST)
+    public void createFundraiseComments(@RequestBody FundraiseCommentsDTO fundraiseCommentsDTO) throws BlissofgivingClientException {
+        try {
+            commentsClientService.createFundraiseComment(fundraiseCommentsDTO);
+        } catch (BlissofgivingClientException e) {
+            e.printStackTrace();//TODO Shashi
+        }
+    }
 }

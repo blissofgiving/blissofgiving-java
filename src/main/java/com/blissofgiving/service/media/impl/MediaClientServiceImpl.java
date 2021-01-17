@@ -8,6 +8,7 @@ import com.blissofgiving.service.media.api.FundraiseMediaService;
 import com.blissofgiving.service.media.api.MediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 
@@ -26,8 +27,8 @@ public class MediaClientServiceImpl {
     @Autowired
     FundraiseMediaService fundraiseMediaService;
 
-    public String addMedia(MediaDTO mediaDTO, String imagetype, String lastUpdatedUser) {
-        String mediaId = mediaService.addMedia(mediaDTO.getTitle(), imagetype, mediaDTO.getFile());
+    public String addMedia(MediaDTO mediaDTO, String imagetype, String lastUpdatedUser, MultipartFile mediafile) {
+        String mediaId = mediaService.addMedia(mediaDTO.getTitle(), imagetype, mediafile);
         mediaDTO.setLastUpdateUser(lastUpdatedUser);
         mediaDTO.setMediaSysGuid(mediaId);
         if ("FUNDRAISE".equalsIgnoreCase(mediaDTO.getOrigin())) {

@@ -7,6 +7,9 @@ import com.blissofgiving.service.fundraise.api.FundraiseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class FundraiseServiceImpl implements FundraiseService {
 
@@ -28,6 +31,23 @@ public class FundraiseServiceImpl implements FundraiseService {
     public Fundraise getFundraiseByID(String fundraiseID) throws BlissofgivingServiceException {
         try {
             return repository.findById(fundraiseID).get();
+        } catch (Exception e) {
+            throw new BlissofgivingServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Fundraise> getAllFundraiseByUserName(String fundraiseUserName) throws BlissofgivingServiceException {
+        try {
+            return repository.findByUsername(fundraiseUserName);
+        } catch (Exception e) {
+            throw new BlissofgivingServiceException(e);
+        }
+    }
+    @Override
+    public List<Fundraise> getActiveFundraisesByUserName(String fundraiseUserName) throws BlissofgivingServiceException {
+        try {
+            return repository.findActivefundraiseByUsername(fundraiseUserName,new Date(System.currentTimeMillis()));
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }

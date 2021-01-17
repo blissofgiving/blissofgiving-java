@@ -1,7 +1,8 @@
 package com.blissofgiving.client.dto;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class FundraiseDTO {
     private String fundraiseSysGUID;
@@ -14,8 +15,8 @@ public class FundraiseDTO {
     private Date endDate;
     private String createdUser;
     private String lastUpdateUser;
-    private Timestamp createdTimestamp;
-    private Timestamp lastUpdateTimestamp;
+    private Date createdTimestamp;
+    private Date lastUpdateTimestamp;
 
     public String getFundraiseSysGUID() {
         return fundraiseSysGUID;
@@ -97,19 +98,19 @@ public class FundraiseDTO {
         this.lastUpdateUser = lastUpdateUser;
     }
 
-    public Timestamp getCreatedTimestamp() {
+    public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(Timestamp createdTimestamp) {
+    public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 
-    public Timestamp getLastUpdateTimestamp() {
+    public Date getLastUpdateTimestamp() {
         return lastUpdateTimestamp;
     }
 
-    public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
+    public void setLastUpdateTimestamp(Date lastUpdateTimestamp) {
         this.lastUpdateTimestamp = lastUpdateTimestamp;
     }
 }

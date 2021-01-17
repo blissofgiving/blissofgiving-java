@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CommentsClientServiceImpl  implements CommentsClientService {
+public class CommentsClientServiceImpl implements CommentsClientService {
 
     @Autowired
     private FundraiseCommentService fundraiseCommentService;
@@ -28,6 +28,17 @@ public class CommentsClientServiceImpl  implements CommentsClientService {
                 fundraiseCommentsList.add(comments);
             });
             fundraiseCommentService.createFundraiseComments(fundraiseCommentsList);
+        } catch (Exception e) {
+            throw new BlissofgivingClientException(e);
+        }
+    }
+
+    @Override
+    public void createFundraiseComment(final FundraiseCommentsDTO fundraiseCommentsDTO) throws BlissofgivingClientException {
+        FundraiseComments fundraiseComments = new FundraiseComments();
+        try {
+            BeanUtils.copyProperties(fundraiseCommentsDTO, fundraiseComments);
+            fundraiseCommentService.createFundraiseComment(fundraiseComments);
         } catch (Exception e) {
             throw new BlissofgivingClientException(e);
         }

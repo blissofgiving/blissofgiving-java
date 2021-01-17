@@ -1,10 +1,12 @@
 package com.blissofgiving.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Date;
+
 
 @Document(collection = "FUNDRAISE")
 public class Fundraise {
@@ -17,10 +19,11 @@ public class Fundraise {
     private Boolean fundraiseStatus;
     private Date startDate;
     private Date endDate;
+    @Indexed
     private String createdUser;
     private String lastUpdateUser;
-    private Timestamp createdTimestamp;
-    private Timestamp lastUpdateTimestamp;
+    private Date createdTimestamp;
+    private Date lastUpdateTimestamp;
 
 
     public String getFundraiseSysGUID() {
@@ -103,19 +106,19 @@ public class Fundraise {
         this.lastUpdateUser = lastUpdateUser;
     }
 
-    public Timestamp getCreatedTimestamp() {
+    public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(Timestamp createdTimestamp) {
+    public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 
-    public Timestamp getLastUpdateTimestamp() {
+    public Date getLastUpdateTimestamp() {
         return lastUpdateTimestamp;
     }
 
-    public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
+    public void setLastUpdateTimestamp(Date lastUpdateTimestamp) {
         this.lastUpdateTimestamp = lastUpdateTimestamp;
     }
 }
