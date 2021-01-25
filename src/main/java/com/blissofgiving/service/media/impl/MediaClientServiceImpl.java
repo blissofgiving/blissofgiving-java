@@ -3,6 +3,7 @@ package com.blissofgiving.service.media.impl;
 import com.blissofgiving.client.dto.MediaDTO;
 import com.blissofgiving.model.BeneficiaryMedia;
 import com.blissofgiving.model.FundraiseMedia;
+import com.blissofgiving.model.Photos;
 import com.blissofgiving.service.media.api.BeneficiaryMediaService;
 import com.blissofgiving.service.media.api.FundraiseMediaService;
 import com.blissofgiving.service.media.api.MediaService;
@@ -58,5 +59,9 @@ public class MediaClientServiceImpl {
         media.setLastUpdateUser(mediaDTO.getLastUpdateUser());
         media.setLastUpdateTimestamp(new Timestamp(System.currentTimeMillis()));
         return media;
+    }
+
+    public Photos getPhoto(String photoID) {
+        return mediaService.getPhoto(photoID);
     }
 }

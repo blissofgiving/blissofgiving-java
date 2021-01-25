@@ -20,15 +20,22 @@ repositories {
 }
 
 dependencies {
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//Spring
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	//runtimeOnly 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.security:spring-security-test'
+
+	//Stripe payment gateway
+	implementation "com.stripe:stripe-java:18.14.0"
+	implementation "com.google.code.gson:gson:2.8.6"
+
+	// Security: JWT
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	//Test
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -44,4 +51,4 @@ bootRun {
 }
 
 apply plugin: 'application'
-applicationDefaultJvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" ]
+//applicationDefaultJvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005" ]

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"http://blissofgiving-react-app.s3-website.us-east-2.amazonaws.com"})
 public class FundraiseControllerImpl implements FundraiseController {
 
     @Autowired
