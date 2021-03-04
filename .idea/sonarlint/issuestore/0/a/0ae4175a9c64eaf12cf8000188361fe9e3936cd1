@@ -1,5 +1,0 @@
-
-nsquid:UselessImportCheck"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ
-ˆsquid:UselessImportCheck"]Remove this unused import 'com.blissofgiving.exception.BlissofgivingRecordNotFoundException'.(å³íÊ8ñôÑ»Œ.
-¼%squid:RedundantThrowsDeclarationCheck
-"ƒRemove the declaration of thrown exception 'com.blissofgiving.exception.BlissofgivingClientException' which is a runtime exception.(Õº‚¡8ºÙå®.

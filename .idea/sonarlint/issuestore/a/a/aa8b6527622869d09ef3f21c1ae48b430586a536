@@ -1,6 +1,0 @@
-
-{squid:S1488"_Immediately return this expression instead of assigning it to the temporary variable "userDTO".(İ½¬áúÿÿÿÿ
-ksquid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ı‡ƒüÿÿÿÿ8ôô‚¢.
-Á%squid:RedundantThrowsDeclarationCheck"ƒRemove the declaration of thrown exception 'com.blissofgiving.exception.BlissofgivingClientException' which is a runtime exception.(ÜÁµùÿÿÿÿ8§î’¢.
-nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÒËÁéûÿÿÿÿ8×¿ç‘.
-nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8×¿ç‘.

@@ -1,4 +1,0 @@
-
-zsquid:UselessImportCheck"QRemove this unused import 'org.springframework.web.bind.annotation.RequestParam'.(Â¬À·ùÿÿÿÿ
-Á%squid:RedundantThrowsDeclarationCheck	"ƒRemove the declaration of thrown exception 'com.blissofgiving.exception.BlissofgivingClientException' which is a runtime exception.(íöÒµşÿÿÿÿ8ƒ„’¢.
-isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ß•Öç8¸‘ç‘.
