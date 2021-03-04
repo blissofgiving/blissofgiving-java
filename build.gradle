@@ -28,6 +28,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.security:spring-security-test'
 
+	//DynamoDB
+	implementation 'com.amazonaws:aws-java-sdk-bom:1.11.963'
+	implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.11.506'
+	implementation 'com.github.derjust:spring-data-dynamodb:5.1.0'
+
+
 	//Stripe payment gateway
 	implementation "com.stripe:stripe-java:18.14.0"
 	implementation "com.google.code.gson:gson:2.8.6"

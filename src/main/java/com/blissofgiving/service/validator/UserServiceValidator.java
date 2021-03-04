@@ -1,7 +1,7 @@
 package com.blissofgiving.service.validator;
 
 import com.blissofgiving.exception.BlissofgivingValidationException;
-import com.blissofgiving.model.User;
+import com.blissofgiving.dynamodbmodel.User;
 
 public interface UserServiceValidator {
 

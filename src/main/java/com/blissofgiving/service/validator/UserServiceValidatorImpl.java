@@ -4,7 +4,7 @@ import com.blissofgiving.exception.BlissofgivingServiceException;
 import com.blissofgiving.exception.BlissofgivingValidationError;
 import com.blissofgiving.exception.BlissofgivingValidationException;
 import com.blissofgiving.exception.BlissofgivingValidationResult;
-import com.blissofgiving.model.User;
+import com.blissofgiving.dynamodbmodel.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,14 +20,14 @@ public class UserServiceValidatorImpl implements UserServiceValidator {
         //validate required fields
         ArrayList<BlissofgivingValidationError> errors = new ArrayList<>();
 
-        if(user.getUsername() == null || user.getUsername().length() <= 0){
-            BlissofgivingValidationError validationResult = new BlissofgivingValidationError("username", "lable.username.empty",
-                    "username is empty", null);
+        if(user.getUserId() == null || user.getUserId().length() <= 0){
+            BlissofgivingValidationError validationResult = new BlissofgivingValidationError("username", "label.username.empty",
+                    "UserId is empty", null);
             errors.add(validationResult);
         }
 
         if(user.getPassword() == null || user.getPassword().length() <= 0){
-            BlissofgivingValidationError validationResult = new BlissofgivingValidationError("password", "lable.password.empty",
+            BlissofgivingValidationError validationResult = new BlissofgivingValidationError("password", "label.password.empty",
                     "Password is empty", null);
             errors.add(validationResult);
         }

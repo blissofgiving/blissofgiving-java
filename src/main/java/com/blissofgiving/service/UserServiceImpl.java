@@ -1,15 +1,15 @@
 package com.blissofgiving.service;
 
-import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
-import com.blissofgiving.exception.BlissofgivingServiceException;
-import com.blissofgiving.exception.BlissofgivingValidationException;
-import com.blissofgiving.model.User;
-import com.blissofgiving.repository.UserRepository;
-import com.blissofgiving.service.validator.UserServiceValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.blissofgiving.dao.UserDAO;
+import com.blissofgiving.dynamodbmodel.User;
+import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
+import com.blissofgiving.exception.BlissofgivingServiceException;
+import com.blissofgiving.exception.BlissofgivingValidationException;
+import com.blissofgiving.repository.UserRepository;
+import com.blissofgiving.service.validator.UserServiceValidator;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,12 +20,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserServiceValidator userServiceValidator;
 
+    @Autowired
+    UserDAO userDAO;
+
     @Override
-    public User getUser(String username) throws BlissofgivingRecordNotFoundException {
-        List<User> users = repository.findByUsername(username);
-        if(users == null || users.size() <= 0)
-            throw new BlissofgivingRecordNotFoundException("No record found for user: "+ username);
-        return users.get(0);
+    public User getUser(String userId) throws BlissofgivingRecordNotFoundException {
+//        List<User> users = repository.findByUsername(username);
+//        if(users == null || users.size() <= 0)
+//            throw new BlissofgivingRecordNotFoundException("No record found for user: "+ username);
+//        return users.get(0);
+        User user = userDAO.getUser(userId);
+        return user;
     }
 
 
@@ -35,29 +40,29 @@ public class UserServiceImpl implements UserService {
         userServiceValidator.validateUser(user);
 
         //Save in to DB
-        User savedUser = repository.save(user);
+        User savedUser = userDAO.save(user);
     }
 
     @Override
     public void updateUser(User user) throws BlissofgivingServiceException, BlissofgivingValidationException {
         // Validate
-        userServiceValidator.validateUser(user);
+        //userServiceValidator.validateUser(user);
         //TODO update only if the user value is null
         if(user.getUserSysGUID() == null) {
             try {
-                User userFromDB = getUser(user.getUsername());
+                User userFromDB = getUser(user.getUserId());
 
                 user.setUserSysGUID(userFromDB.getUserSysGUID());
             } catch (BlissofgivingRecordNotFoundException e) {
-                throw new BlissofgivingServiceException("User is not availbale." + user.getUsername());
+                throw new BlissofgivingServiceException("User is not availbale." + user.getUserId());
             }
         }
         //Save to DB
-        User savedUser = repository.save(user);
+        User savedUser = userDAO.save(user);
     }
 
     @Override
-    public void deleteUser(String username) throws BlissofgivingServiceException {
-        repository.deleteByUsername(username);
+    public void deleteUser(String userId) throws BlissofgivingServiceException {
+        userDAO.deleteByUserId(userId);
     }
 }

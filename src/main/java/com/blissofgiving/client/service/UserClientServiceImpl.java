@@ -1,14 +1,15 @@
 package com.blissofgiving.client.service;
 
-import com.blissofgiving.client.dto.UserDTO;
-import com.blissofgiving.exception.BlissofgivingClientException;
-import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
-import com.blissofgiving.exception.BlissofgivingValidationException;
-import com.blissofgiving.model.User;
-import com.blissofgiving.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.blissofgiving.client.dto.UserDTO;
+import com.blissofgiving.dynamodbmodel.User;
+import com.blissofgiving.exception.BlissofgivingClientException;
+import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
+import com.blissofgiving.exception.BlissofgivingValidationException;
+import com.blissofgiving.service.UserService;
 
 @Component
 public class UserClientServiceImpl implements  UserClientService {
@@ -17,12 +18,12 @@ public class UserClientServiceImpl implements  UserClientService {
     UserService userService;
 
     @Override
-    public UserDTO getUser(String username) throws BlissofgivingClientException {
+    public UserDTO getUser(String userId) throws BlissofgivingClientException {
 
         // Get the User from DB
-        User user  = null;
+        com.blissofgiving.dynamodbmodel.User user  = null;
         try {
-            user = userService.getUser(username);
+            user = userService.getUser(userId);
         } catch (BlissofgivingRecordNotFoundException e) {
             throw new BlissofgivingClientException("User not found: " + e.getMessage());
         }
@@ -58,7 +59,7 @@ public class UserClientServiceImpl implements  UserClientService {
     }
 
     @Override
-    public void deleteUser(String username) throws BlissofgivingClientException {
-        userService.deleteUser(username);
+    public void deleteUser(String userId) throws BlissofgivingClientException {
+        userService.deleteUser(userId);
     }
 }

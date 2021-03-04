@@ -6,11 +6,11 @@ import com.blissofgiving.exception.BlissofgivingValidationException;
 
 public interface UserClientService {
 
-    public UserDTO getUser(String username) throws BlissofgivingClientException;
+    public UserDTO getUser(String userId) throws BlissofgivingClientException;
 
     void addUser(UserDTO userDTO) throws BlissofgivingClientException, BlissofgivingValidationException;
 
     void updateUser(UserDTO userDTO) throws BlissofgivingClientException, BlissofgivingValidationException;
 
-    void deleteUser(String username) throws BlissofgivingClientException;
+    void deleteUser(String userId) throws BlissofgivingClientException;
 }

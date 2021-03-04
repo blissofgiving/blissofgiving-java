@@ -4,7 +4,7 @@ public class UserDTO {
 
     private String userSysGUID;
     private String userType;
-    private String username;
+    private String userId;
     private String password;
     private String firstName;
     private String lastName;
@@ -34,12 +34,12 @@ public class UserDTO {
         this.userType = userType;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {

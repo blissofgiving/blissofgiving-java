@@ -17,8 +17,8 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(path = "/api/rest/v1/user", method = RequestMethod.GET)
-    public UserDTO getUser(@RequestParam(value = "username") String username) throws BlissofgivingClientException {
-        UserDTO userDTO  = userClientService.getUser(username);
+    public UserDTO getUser(@RequestParam(value = "userId") String userId) throws BlissofgivingClientException {
+        UserDTO userDTO  = userClientService.getUser(userId);
         return userDTO;
     }
 
@@ -44,7 +44,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     @RequestMapping(path = "/api/rest/v1/user", method = RequestMethod.DELETE)
-    public void deleteUser(@RequestParam(value = "username") String username) throws BlissofgivingClientException {
-            userClientService.deleteUser(username);
+    public void deleteUser(@RequestParam(value = "userId") String userId) throws BlissofgivingClientException {
+            userClientService.deleteUser(userId);
     }
 }
