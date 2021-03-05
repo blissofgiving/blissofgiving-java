@@ -21,10 +21,10 @@ public class BlissDynamoDBConfig {
 	private String awsRegion = "us-east-2";
 
 	//@Value("amazon.aws.accessKey")
-	private String awsAccessKey = "AKIAXD3VKNFRU37SR2XS";
+	private String awsAccessKey = "TODO";
 
 	//@Value("amazon.aws.secretKey")
-	private String awsSecretKey = "bbD/if0Gin1Cn8vwtE86NimY/URijs1P0pqHAVS5";
+	private String awsSecretKey = "TODO";
 
 	public AWSCredentialsProvider amazonAWSCredentialsProvider() {
 		return new AWSStaticCredentialsProvider(getAWSCredentials());
