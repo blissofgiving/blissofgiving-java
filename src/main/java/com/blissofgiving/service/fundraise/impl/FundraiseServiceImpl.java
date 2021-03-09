@@ -1,53 +1,57 @@
 package com.blissofgiving.service.fundraise.impl;
 
-import com.blissofgiving.exception.BlissofgivingServiceException;
-import com.blissofgiving.model.Fundraise;
-import com.blissofgiving.repository.FundraiseRespository;
-import com.blissofgiving.service.fundraise.api.FundraiseService;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import com.blissofgiving.dao.FundraiseDAO;
+import com.blissofgiving.dynamodbmodel.Fundraise;
+import com.blissofgiving.exception.BlissofgivingServiceException;
+import com.blissofgiving.service.fundraise.api.FundraiseService;
 
 @Service
 public class FundraiseServiceImpl implements FundraiseService {
 
     @Autowired
-    private FundraiseRespository repository;
+    private FundraiseDAO fundraiseDAO;
 
     @Override
     public String createFundraise(final Fundraise fundraise) throws BlissofgivingServiceException {
         Fundraise fundraiseCreated = null;
+
+        String key = UUID.randomUUID().toString();
         try {
-            fundraiseCreated = repository.insert(fundraise);
+            fundraise.setFundraiseSysGUID(key);
+             fundraiseDAO.createFundraise(fundraise);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
-        return fundraiseCreated.getFundraiseSysGUID();
+        return key;
     }
 
     @Override
-    public Fundraise getFundraiseByID(String fundraiseID) throws BlissofgivingServiceException {
+    public Fundraise getFundraiseByID(String fundraiseID, String userId) throws BlissofgivingServiceException {
         try {
-            return repository.findById(fundraiseID).get();
+            return fundraiseDAO.getFundraiseById(fundraiseID, userId);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
     }
 
     @Override
-    public List<Fundraise> getAllFundraiseByUserName(String fundraiseUserName) throws BlissofgivingServiceException {
+    public List<Fundraise> getAllFundraiseByUserId(String fundraiseUserId) throws BlissofgivingServiceException {
         try {
-            return repository.findByUsername(fundraiseUserName);
+            return fundraiseDAO.getAllFundraiseByUserId(fundraiseUserId);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
     }
     @Override
-    public List<Fundraise> getActiveFundraisesByUserName(String fundraiseUserName) throws BlissofgivingServiceException {
+    public List<Fundraise> getActiveFundraisesByUserId(String fundraiseUserId) throws BlissofgivingServiceException {
         try {
-            return repository.findActivefundraiseByUsername(fundraiseUserName,new Date(System.currentTimeMillis()));
+            return fundraiseDAO.findActiveFundraiseByUserId(fundraiseUserId);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
@@ -56,9 +60,14 @@ public class FundraiseServiceImpl implements FundraiseService {
     @Override
     public void deleteFundraise(final String fundraiseID) throws BlissofgivingServiceException {
         try {
-            repository.deleteById(fundraiseID);
+            fundraiseDAO.deleteById(fundraiseID);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
+    }
+
+    @Override
+    public void updateFundraise(Fundraise fundraise) {
+        fundraiseDAO.updateFundraise(fundraise);
     }
 }

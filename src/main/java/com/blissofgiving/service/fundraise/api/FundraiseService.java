@@ -1,19 +1,21 @@
 package com.blissofgiving.service.fundraise.api;
 
-import com.blissofgiving.exception.BlissofgivingServiceException;
-import com.blissofgiving.model.Fundraise;
-
 import java.util.List;
+
+import com.blissofgiving.dynamodbmodel.Fundraise;
+import com.blissofgiving.exception.BlissofgivingServiceException;
 
 public interface FundraiseService {
 
     String createFundraise(Fundraise fundraise) throws BlissofgivingServiceException;
 
-    Fundraise getFundraiseByID(String fundraiseID) throws BlissofgivingServiceException;
+    Fundraise getFundraiseByID(String fundraiseID, String userId) throws BlissofgivingServiceException;
 
-    List<Fundraise> getAllFundraiseByUserName(String fundraiseUserName) throws BlissofgivingServiceException;
+    List<Fundraise> getAllFundraiseByUserId(String fundraiseUserName) throws BlissofgivingServiceException;
 
-    List<Fundraise> getActiveFundraisesByUserName(String fundraiseUserName) throws BlissofgivingServiceException;
+    List<Fundraise> getActiveFundraisesByUserId(String fundraiseUserName) throws BlissofgivingServiceException;
 
     void deleteFundraise(String fundraiseID) throws BlissofgivingServiceException;
+
+    void updateFundraise(Fundraise fundraise);
 }
