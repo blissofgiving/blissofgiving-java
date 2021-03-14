@@ -7,9 +7,9 @@ public class FundraiseCommentsDTO {
     private String fundraiseSysGuid;
     private String fundraiseComment;
     private String createdUser;
+    private Timestamp createdDate;
     private String lastUpdateUser;
-    private Timestamp createdTimestamp;
-    private Timestamp lastUpdateTimestamp;
+    private Timestamp lastUpdateDate;
 
     public String getFundRaiseCommentSysGuid() {
         return fundRaiseCommentSysGuid;
@@ -51,19 +51,19 @@ public class FundraiseCommentsDTO {
         this.lastUpdateUser = lastUpdateUser;
     }
 
-    public Timestamp getCreatedTimestamp() {
-        return createdTimestamp;
+    public Timestamp getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreatedTimestamp(Timestamp createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Timestamp getLastUpdateTimestamp() {
-        return lastUpdateTimestamp;
+    public Timestamp getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
-        this.lastUpdateTimestamp = lastUpdateTimestamp;
+    public void setLastUpdateDate(Timestamp lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

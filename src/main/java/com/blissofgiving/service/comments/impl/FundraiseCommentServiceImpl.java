@@ -1,33 +1,43 @@
 package com.blissofgiving.service.comments.impl;
 
-import com.blissofgiving.exception.BlissofgivingServiceException;
-import com.blissofgiving.model.FundraiseComments;
-import com.blissofgiving.repository.FundraiseCommentsRespository;
-import com.blissofgiving.service.comments.api.FundraiseCommentService;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.blissofgiving.dao.FundaraiseCommentsDAO;
+import com.blissofgiving.dynamodbmodel.FundraiseComment;
+import com.blissofgiving.exception.BlissofgivingServiceException;
+import com.blissofgiving.service.comments.api.FundraiseCommentService;
 
 @Service
 public class FundraiseCommentServiceImpl implements FundraiseCommentService {
 
     @Autowired
-    private FundraiseCommentsRespository fundraiseCommentsRespository;
+    private FundaraiseCommentsDAO fundaraiseCommentDao;
 
     @Override
-    public void createFundraiseComments(List<FundraiseComments> fundraiseCommentsList) throws BlissofgivingServiceException {
+    public void createFundraiseComments(List<FundraiseComment> fundraiseCommentsList) throws BlissofgivingServiceException {
         try {
-            fundraiseCommentsRespository.saveAll(fundraiseCommentsList);
+
+            fundraiseCommentsList.forEach(fundraiseComment -> {
+                String key = UUID.randomUUID().toString();
+                fundraiseComment.setFundRaiseCommentSysGuid(key);
+
+            });
+            fundaraiseCommentDao.createFundraiseComments(fundraiseCommentsList);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
     }
 
     @Override
-    public void createFundraiseComment(FundraiseComments fundraiseComment) throws BlissofgivingServiceException {
+    public void createFundraiseComment(FundraiseComment fundraiseComment) throws BlissofgivingServiceException {
         try {
-            fundraiseCommentsRespository.insert(fundraiseComment);
+            String key = UUID.randomUUID().toString();
+            fundraiseComment.setFundRaiseCommentSysGuid(key);
+            fundaraiseCommentDao.createFundraiseComment(fundraiseComment);
         } catch (Exception e) {
             throw new BlissofgivingServiceException(e);
         }
