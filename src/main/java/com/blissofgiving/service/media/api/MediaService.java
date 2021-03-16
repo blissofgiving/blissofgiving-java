@@ -10,11 +10,7 @@ import java.io.IOException;
 public interface MediaService {
     String addMedia(String title, String type, MultipartFile file)throws BlissofgivingServiceException;
 
-    String addVideo(String title, MultipartFile file) throws IOException;
+    String uploadMediaStorage(String title, MultipartFile file) throws Exception;
 
-    String addPhoto(String title, MultipartFile file) throws IOException;
-
-    Video getVideo(String id) throws IllegalStateException, IOException;
-
-    Photos getPhoto(String id);
+    String getMediaLink(String fileName) throws Exception;
 }

@@ -36,8 +36,8 @@ public class MediaController {
     }
 
     @GetMapping("/api/rest/v1/photos/get")
-    public Photos getPhoto(@RequestParam(value = "photoID") String photoID){
-        Photos photos = mediaClientService.getPhoto(photoID);
-        return photos;
+    public String getPhoto(@RequestParam(value = "photoID") String photoID) throws Exception {
+        String mediaLink = mediaClientService.getMediaLink(photoID);
+        return mediaLink;
     }
 }

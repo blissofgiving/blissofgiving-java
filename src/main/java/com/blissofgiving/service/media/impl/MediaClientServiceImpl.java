@@ -61,7 +61,7 @@ public class MediaClientServiceImpl {
         return media;
     }
 
-    public Photos getPhoto(String photoID) {
-        return mediaService.getPhoto(photoID);
+    public String getMediaLink(String fileName) throws Exception {
+        return mediaService.getMediaLink(fileName);
     }
 }
