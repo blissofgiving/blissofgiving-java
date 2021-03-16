@@ -9,4 +9,6 @@ public interface FundraiseCommentsClientService {
     void createFundraiseComments(List<FundraiseCommentsDTO> fundraiseCommentsDTOList, String userId) throws BlissofgivingClientException;
 
     void createFundraiseComment(FundraiseCommentsDTO fundraiseCommentsDTO, String userId) throws BlissofgivingClientException;
+
+    List<FundraiseCommentsDTO> getFundraiseComments(String fundraiseSysGuid, String userId)throws BlissofgivingClientException;
 }

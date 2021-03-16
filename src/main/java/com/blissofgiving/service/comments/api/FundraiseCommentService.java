@@ -10,4 +10,6 @@ public interface FundraiseCommentService {
     void createFundraiseComments(List<FundraiseComment> fundraiseCommentsList) throws BlissofgivingServiceException;
 
     void createFundraiseComment(FundraiseComment fundraiseComment) throws BlissofgivingServiceException;
+
+    List<FundraiseComment> getFundraiseComments(String fundraiseSysGuid, String userId)throws BlissofgivingServiceException;
 }

@@ -8,4 +8,6 @@ public interface FundaraiseCommentsDAO {
 	void createFundraiseComment(FundraiseComment fundraiseComment);
 
 	void createFundraiseComments(List<FundraiseComment> fundraiseCommentsList);
+
+	List<FundraiseComment> getFundraiseComments(String fundraiseSysGuid, String userId);
 }

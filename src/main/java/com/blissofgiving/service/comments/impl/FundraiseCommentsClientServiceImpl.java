@@ -56,4 +56,17 @@ public class FundraiseCommentsClientServiceImpl implements FundraiseCommentsClie
             throw new BlissofgivingClientException(e);
         }
     }
+
+    @Override
+    public List<FundraiseCommentsDTO> getFundraiseComments(String fundraiseSysGuid, String userId) throws BlissofgivingClientException {
+        List<FundraiseComment> fundraiseCommentList = fundraiseCommentService.getFundraiseComments(fundraiseSysGuid, userId);
+
+        List<FundraiseCommentsDTO> fundraiseCommentsDTOList = new ArrayList<>();
+        fundraiseCommentList.forEach(fundraiseComment -> {
+            FundraiseCommentsDTO fundraiseCommentsDTO = new FundraiseCommentsDTO();
+            BeanUtils.copyProperties(fundraiseComment, fundraiseCommentsDTO);
+            fundraiseCommentsDTOList.add(fundraiseCommentsDTO);
+        });
+        return fundraiseCommentsDTOList;
+    }
 }

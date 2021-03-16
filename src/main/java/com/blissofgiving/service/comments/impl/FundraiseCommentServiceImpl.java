@@ -42,4 +42,13 @@ public class FundraiseCommentServiceImpl implements FundraiseCommentService {
             throw new BlissofgivingServiceException(e);
         }
     }
+
+    @Override
+    public List<FundraiseComment> getFundraiseComments(String fundraiseSysGuid, String userId) throws BlissofgivingServiceException {
+        try {
+            return fundaraiseCommentDao.getFundraiseComments(fundraiseSysGuid, userId);
+        }catch (Exception e){
+            throw new BlissofgivingServiceException(e);
+        }
+    }
 }
