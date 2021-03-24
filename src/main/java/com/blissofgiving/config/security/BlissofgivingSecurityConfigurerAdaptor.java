@@ -1,16 +1,12 @@
 package com.blissofgiving.config.security;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.blissofgiving.filter.BlissofgivingRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -56,7 +52,7 @@ public class BlissofgivingSecurityConfigurerAdaptor extends WebSecurityConfigure
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/rest/v1/token").permitAll()
+                .antMatchers("/api/rest/v1/token", "/index.html", "/api/rest/v1/payment", "/api/rest/v1/charge", "/payment.html", "/templates/payment.html", "/success.html").permitAll() //Except mentioned here remaining need a JWT token
                 .anyRequest().authenticated()//
                 .and().exceptionHandling()//
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

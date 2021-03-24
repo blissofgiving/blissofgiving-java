@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:th='http://www.thymeleaf.org'>
+<head>
+    <title>Bliss of Giving payment</title>
+    <style>
+            body {
+                font-family: 'arial';
+            }
+            #checkout-form input,
+            #checkout-form button {
+                display: block;
+                margin: 12px;
+            }
+        </style>
+</head>
+<body>
+<form action='/api/rest/v1/charge' method='POST' id='checkout-form'>
+    <input type='hidden' th:value='${PaymentDTO.amount}' name='amount' />
+    <label>Price:<span th:text='${PaymentDTO.amount/100}' /></label>
+   <!--NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+    <script
+            src='https://checkout.stripe.com/checkout.js'
+            class='stripe-button'
+            th:attr='data-key=${PaymentDTO.stripePublicKey},
+                         data-amount=${PaymentDTO.amount},
+                         data-currency=${PaymentDTO.currency}'
+            data-name='Bliss Of Giving'
+            data-description='Bliss Of Giving'
+            data-locale='auto'
+            data-zip-code='false'>
+    </script>
+</form>
+</body>
+</html>
