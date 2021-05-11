@@ -16,6 +16,8 @@
 <body>
 <form action='/api/rest/v1/charge' method='POST' id='checkout-form'>
     <input type='hidden' th:value='${PaymentDTO.amount}' name='amount' />
+    <input type="hidden" th:value="beneficiarySysGuid123456" name="beneficiarySysGuid">
+
     <label>Price:<span th:text='${PaymentDTO.amount/100}' /></label>
    <!--NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
     <script

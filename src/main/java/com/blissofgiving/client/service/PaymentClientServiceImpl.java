@@ -33,7 +33,8 @@ public class PaymentClientServiceImpl implements PaymentClientService{
 		PaymentRequest paymentRequest = new PaymentRequest();
 		BeanUtils.copyProperties(paymentRequestDTO, paymentRequest);
 		try {
-			return paymentService.charge(paymentRequest);
+			Charge charge =  paymentService.charge(paymentRequest);
+			return charge;
 		} catch (StripeException e) {
 			throw new BlissofgivingClientException("Exception while Charge: "+ e.getMessage());
 		}

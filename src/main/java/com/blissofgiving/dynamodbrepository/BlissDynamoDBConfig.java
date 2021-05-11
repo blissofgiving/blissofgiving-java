@@ -17,14 +17,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 @Configuration
 public class BlissDynamoDBConfig {
 
-	//@Value("amazon.aws.region")
-	private String awsRegion = "us-east-2";
+	@Value("${amazon.aws.region}")
+	private String awsRegion;
 
-	//@Value("amazon.aws.accessKey")
-	private String awsAccessKey = "TODO";
+	@Value("${amazon.aws.accessKey}")
+	private String awsAccessKey;
 
-	//@Value("amazon.aws.secretKey")
-	private String awsSecretKey = "TODO";
+	@Value("${amazon.aws.secretKey}")
+	private String awsSecretKey;
 
 	public AWSCredentialsProvider amazonAWSCredentialsProvider() {
 		return new AWSStaticCredentialsProvider(getAWSCredentials());

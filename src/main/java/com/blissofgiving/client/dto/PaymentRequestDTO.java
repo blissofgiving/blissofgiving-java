@@ -9,6 +9,7 @@ public class PaymentRequestDTO {
 	private Currency currency;
 	private String stripeEmail;
 	private String stripeToken;
+	private String beneficiarySysGuid;
 
 	public String getDescription() {
 		return description;
@@ -48,5 +49,13 @@ public class PaymentRequestDTO {
 
 	public void setStripeToken(String stripeToken) {
 		this.stripeToken = stripeToken;
+	}
+
+	public String getBeneficiarySysGuid() {
+		return beneficiarySysGuid;
+	}
+
+	public void setBeneficiarySysGuid(String beneficiarySysGuid) {
+		this.beneficiarySysGuid = beneficiarySysGuid;
 	}
 }

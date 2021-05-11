@@ -36,11 +36,15 @@ public class PaymentServiceImpl implements PaymentService{
 		chargeParams.put("currency", paymentRequest.getCurrency() == null || paymentRequest.getCurrency().equals("") ? "USD" : paymentRequest.getCurrency());
 		chargeParams.put("description", paymentRequest.getDescription());
 		chargeParams.put("source", paymentRequest.getStripeToken());
+		chargeParams.put("beneficiarySysGuid", paymentRequest.getBeneficiarySysGuid());
 
 		//Set API key
 		Stripe.apiKey = STRIPE_SECRET_KEY;
 
 		Charge charge =  Charge.create(chargeParams);
+
+		// Save payment info against beneficiary
+		//TODO
 		return charge;
 	}
 }
