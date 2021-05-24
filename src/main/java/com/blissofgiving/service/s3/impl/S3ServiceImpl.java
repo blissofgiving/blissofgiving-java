@@ -22,7 +22,7 @@ public class S3ServiceImpl implements S3Service {
 	@Autowired
 	private AmazonS3 amazonS3Client;
 
-	@Value("${aws.bucketName}")
+	@Value("${aws.s3.bucketName}")
 	private String bucketName;
 
 	public AmazonS3 getAmazonS3Client() {

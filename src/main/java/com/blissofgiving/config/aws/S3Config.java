@@ -12,10 +12,10 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @Configuration
 public class S3Config {
-	@Value("${aws.accessKey}")
+	@Value("${aws.system.user.accesskey}")
 	private String awsId;
 
-	@Value("${aws.secretKey}")
+	@Value("${aws.system.user.secretkey}")
 	private String awsKey;
 
 	@Value("${aws.region}")

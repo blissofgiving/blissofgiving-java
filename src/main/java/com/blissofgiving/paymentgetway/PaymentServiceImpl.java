@@ -19,10 +19,10 @@ import com.stripe.model.Charge;
 @Service
 public class PaymentServiceImpl implements PaymentService{
 	@Value("${stripe.apikey}")
-	private String STRIPE_API_KEY;
+	private String stripeApiKey;
 
 	@Value("${stripe.secretkey}")
-	private String STRIPE_SECRET_KEY;
+	private String stripeSecretKey;
 
 	@Autowired
 	PaymentDAO paymentDAO;
@@ -32,7 +32,7 @@ public class PaymentServiceImpl implements PaymentService{
 		Payment payment = new Payment();
 		payment.setAmount(1000);
 		payment.setCurrency("USD");
-		payment.setStripePublicKey(STRIPE_API_KEY);
+		payment.setStripePublicKey(stripeApiKey);
 		return payment;
 	}
 
@@ -46,7 +46,7 @@ public class PaymentServiceImpl implements PaymentService{
 		//chargeParams.put("beneficiarySysGuid", paymentRequest.getBeneficiarySysGuid());
 
 		//Set API key
-		Stripe.apiKey = STRIPE_SECRET_KEY;
+		Stripe.apiKey = stripeSecretKey;
 
 		Charge charge =  Charge.create(chargeParams);
 

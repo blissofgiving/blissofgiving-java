@@ -1,0 +1,26 @@
+aws:
+  dynamo:
+    accesskey: ${aws.dynamo.accesskey}
+    secretkey: ${aws.dynamo.secretkey}
+  s3:
+    endpointUrl: https://s3.us-east-2.amazonaws.com
+    bucketName: ${aws.s3.bucketName}
+  system:
+    user:
+      accesskey: ${aws.system.user.accesskey}
+      secretkey: ${aws.system.user.secretkey}
+  region: us-east-2
+  accessKey: ${AWS_ACCESS_KEY}
+  secretKey: ${AWS_SECRET_KEY}
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@cluster0-upfyc.mongodb.net/blissofgiving-dev?retryWrites=true&w=majority
+  servlet:
+    multipart:
+      max-file-size: 256MB
+      max-request-size: 256MB
+      enabled: true
+stripe:
+  apikey: ${stripe.apikey}
+  secretkey: ${stripe.secretkey}

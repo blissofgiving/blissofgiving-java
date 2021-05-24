@@ -34,7 +34,8 @@ dependencies {
 	implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.11.506'
 	implementation 'com.github.derjust:spring-data-dynamodb:5.1.0'
 
-
+	//Aws Secret manager
+	implementation 'com.amazonaws:aws-java-sdk-secretsmanager:1.11.549'
 	//Stripe payment gateway
 	implementation "com.stripe:stripe-java:18.14.0"
 	implementation "com.google.code.gson:gson:2.8.6"
@@ -45,6 +46,8 @@ dependencies {
 	//AWS S3
 	implementation 'com.amazonaws:aws-java-sdk-s3:1.11.327'
 
+	//AWS Secret Manager
+	implementation 'com.amazonaws:aws-java-sdk-secretsmanager:1.11.549'
 	//Test
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
