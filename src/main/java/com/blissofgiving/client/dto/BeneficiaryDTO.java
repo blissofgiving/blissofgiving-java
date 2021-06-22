@@ -1,6 +1,6 @@
 package com.blissofgiving.client.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class BeneficiaryDTO {
 
@@ -12,8 +12,8 @@ public class BeneficiaryDTO {
     private String beneficiaryDetails;
     private String createdUser;
     private String lastUpdateUser;
-    private Timestamp createdTimestamp;
-    private Timestamp lastUpdateTimestamp;
+    private Date createdDate;
+    private Date lastUpdateDate;
 
     public String getBeneficiarySysGuid() {
         return beneficiarySysGuid;
@@ -21,6 +21,14 @@ public class BeneficiaryDTO {
 
     public void setBeneficiarySysGuid(String beneficiarySysGuid) {
         this.beneficiarySysGuid = beneficiarySysGuid;
+    }
+
+    public String getFundraiseSysGuid() {
+        return fundraiseSysGuid;
+    }
+
+    public void setFundraiseSysGuid(String fundraiseSysGuid) {
+        this.fundraiseSysGuid = fundraiseSysGuid;
     }
 
     public String getFirstName() {
@@ -37,14 +45,6 @@ public class BeneficiaryDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getFundraiseSysGuid() {
-        return fundraiseSysGuid;
-    }
-
-    public void setFundraiseSysGuid(String fundraiseSysGuid) {
-        this.fundraiseSysGuid = fundraiseSysGuid;
     }
 
     public String getBeneficiaryType() {
@@ -79,19 +79,19 @@ public class BeneficiaryDTO {
         this.lastUpdateUser = lastUpdateUser;
     }
 
-    public Timestamp getCreatedTimestamp() {
-        return createdTimestamp;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreatedTimestamp(Timestamp createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Timestamp getLastUpdateTimestamp() {
-        return lastUpdateTimestamp;
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
-        this.lastUpdateTimestamp = lastUpdateTimestamp;
+    public void setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

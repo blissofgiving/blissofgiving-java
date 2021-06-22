@@ -1,8 +1,15 @@
 package com.blissofgiving.service.beneficiary.api;
 
 import com.blissofgiving.client.dto.BeneficiaryDTO;
-import com.blissofgiving.exception.BlissofgivingServiceException;
+import com.blissofgiving.exception.BlissofgivingClientException;
 
 public interface BeneficiaryClientService {
-    void createBeneficiary(BeneficiaryDTO beneficiaryDTO) throws BlissofgivingServiceException;
+
+    String createBeneficiary(BeneficiaryDTO beneficiaryDTO) throws BlissofgivingClientException;
+
+    BeneficiaryDTO getBeneficiaryById(String beneficiarySysGuid, String userId) throws BlissofgivingClientException;
+
+    void updateBeneficiary(BeneficiaryDTO beneficiaryDTO, String userId) throws BlissofgivingClientException;
+
+    void deleteBeneficiary(String beneficiarySysGuid) throws  BlissofgivingClientException;
 }
