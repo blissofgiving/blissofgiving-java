@@ -32,8 +32,7 @@ public class AwsEventListener implements ApplicationListener<ApplicationPrepared
 	private String accessKey;
 
 	private void setProperty() {
-		System.setProperty("aws.accessKey", "AKIA3BZFLJZFHLEHAPUZ");
-		System.setProperty("aws.secretKey", "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");
+
 	}
 
 	@Override
