@@ -1,9 +1,8 @@
 package com.blissofgiving.service.media.impl;
 
 import com.blissofgiving.client.dto.MediaDTO;
+import com.blissofgiving.dynamodbmodel.FundraiseMedia;
 import com.blissofgiving.model.BeneficiaryMedia;
-import com.blissofgiving.model.FundraiseMedia;
-import com.blissofgiving.model.Photos;
 import com.blissofgiving.service.media.api.BeneficiaryMediaService;
 import com.blissofgiving.service.media.api.FundraiseMediaService;
 import com.blissofgiving.service.media.api.MediaService;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 public class MediaClientServiceImpl {
@@ -26,12 +26,12 @@ public class MediaClientServiceImpl {
     BeneficiaryMediaService beneficiaryMediaService;
 
     @Autowired
-    FundraiseMediaService fundraiseMediaService;
+    private FundraiseMediaService fundraiseMediaService;
 
     public String addMedia(MediaDTO mediaDTO, String imagetype, String lastUpdatedUser, MultipartFile mediafile) {
         String mediaId = mediaService.addMedia(mediaDTO.getTitle(), imagetype, mediafile);
         mediaDTO.setLastUpdateUser(lastUpdatedUser);
-        mediaDTO.setMediaSysGuid(mediaId);
+        mediaDTO.setMediaLink(mediaId);
         if ("FUNDRAISE".equalsIgnoreCase(mediaDTO.getOrigin())) {
             FundraiseMedia fundraiseMedia = convertToFundraiseMedia(mediaDTO);
             fundraiseMediaService.createFundraiseMedia(fundraiseMedia);
@@ -45,16 +45,15 @@ public class MediaClientServiceImpl {
 
     private FundraiseMedia convertToFundraiseMedia(MediaDTO mediaDTO) {
         FundraiseMedia media = new FundraiseMedia();
-        media.setMediaSysGuid(mediaDTO.getMediaSysGuid());
+        media.setMediaLink(mediaDTO.getMediaLink());
         media.setFundraiseSysGuid(mediaDTO.getSourceSysGuid());
         media.setLastUpdateUser(mediaDTO.getLastUpdateUser());
-        media.setLastUpdateTimestamp(new Timestamp(System.currentTimeMillis()));
         return media;
     }
 
     private BeneficiaryMedia convertToBeneficiaryMedia(MediaDTO mediaDTO) {
         BeneficiaryMedia media = new BeneficiaryMedia();
-        media.setMediaSysGuid(mediaDTO.getMediaSysGuid());
+        media.setMediaSysGuid(mediaDTO.getMediaLink());
         media.setBeneficiarySysGuid(mediaDTO.getSourceSysGuid());
         media.setLastUpdateUser(mediaDTO.getLastUpdateUser());
         media.setLastUpdateTimestamp(new Timestamp(System.currentTimeMillis()));
@@ -63,5 +62,9 @@ public class MediaClientServiceImpl {
 
     public String getMediaLink(String fileName) throws Exception {
         return mediaService.getMediaLink(fileName);
+    }
+
+    public List<String> getMediaLinks(String fileName) throws Exception {
+        return mediaService.getMediaLinks(fileName);
     }
 }

@@ -1,60 +1,52 @@
 package com.blissofgiving.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Document(collection = "FUNDRAISE_MEDIA")
 public class FundraiseMedia implements Serializable {
+	private String fundraiseSysGuid;
+	private String mediaSysGuid;
+	private String lastUpdateUser;
+	private Timestamp lastUpdateTimestamp;
+	private String fundRaiseMediaLink;
 
-    @Id
-    private String fundraiseMediaSysGuid;
-    @Indexed
-    private String fundraiseSysGuid;
-    private String mediaSysGuid;
-    private String lastUpdateUser;
-    private Timestamp lastUpdateTimestamp;
+	public String getFundraiseSysGuid() {
+		return fundraiseSysGuid;
+	}
 
-    public String getFundraiseMediaSysGuid() {
-        return fundraiseMediaSysGuid;
-    }
+	public void setFundraiseSysGuid(String fundraiseSysGuid) {
+		this.fundraiseSysGuid = fundraiseSysGuid;
+	}
 
-    public void setFundraiseMediaSysGuid(String fundraiseMediaSysGuid) {
-        this.fundraiseMediaSysGuid = fundraiseMediaSysGuid;
-    }
+	public String getMediaSysGuid() {
+		return mediaSysGuid;
+	}
 
-    public String getFundraiseSysGuid() {
-        return fundraiseSysGuid;
-    }
+	public void setMediaSysGuid(String mediaSysGuid) {
+		this.mediaSysGuid = mediaSysGuid;
+	}
 
-    public void setFundraiseSysGuid(String fundraiseSysGuid) {
-        this.fundraiseSysGuid = fundraiseSysGuid;
-    }
+	public String getLastUpdateUser() {
+		return lastUpdateUser;
+	}
 
-    public String getMediaSysGuid() {
-        return mediaSysGuid;
-    }
+	public void setLastUpdateUser(String lastUpdateUser) {
+		this.lastUpdateUser = lastUpdateUser;
+	}
 
-    public void setMediaSysGuid(String mediaSysGuid) {
-        this.mediaSysGuid = mediaSysGuid;
-    }
+	public Timestamp getLastUpdateTimestamp() {
+		return lastUpdateTimestamp;
+	}
 
-    public String getLastUpdateUser() {
-        return lastUpdateUser;
-    }
+	public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
+		this.lastUpdateTimestamp = lastUpdateTimestamp;
+	}
 
-    public void setLastUpdateUser(String lastUpdateUser) {
-        this.lastUpdateUser = lastUpdateUser;
-    }
+	public String getFundRaiseMediaLink() {
+		return fundRaiseMediaLink;
+	}
 
-    public Timestamp getLastUpdateTimestamp() {
-        return lastUpdateTimestamp;
-    }
-
-    public void setLastUpdateTimestamp(Timestamp lastUpdateTimestamp) {
-        this.lastUpdateTimestamp = lastUpdateTimestamp;
-    }
+	public void setFundRaiseMediaLink(String fundRaiseMediaLink) {
+		this.fundRaiseMediaLink = fundRaiseMediaLink;
+	}
 }

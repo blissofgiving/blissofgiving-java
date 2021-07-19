@@ -6,6 +6,7 @@ import com.blissofgiving.model.Video;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface MediaService {
     String addMedia(String title, String type, MultipartFile file)throws BlissofgivingServiceException;
@@ -13,4 +14,6 @@ public interface MediaService {
     String uploadMediaStorage(String title, MultipartFile file) throws Exception;
 
     String getMediaLink(String fileName) throws Exception;
+
+	List<String> getMediaLinks(String fileName);
 }

@@ -14,12 +14,16 @@ import com.blissofgiving.exception.BlissofgivingClientException;
 import com.blissofgiving.exception.BlissofgivingServiceException;
 import com.blissofgiving.service.fundraise.api.FundraiseClientService;
 import com.blissofgiving.service.fundraise.api.FundraiseService;
+import com.blissofgiving.service.media.api.MediaService;
 
 @Service
 public class FundraiseClientServiceImpl implements FundraiseClientService {
 
     @Autowired
     private FundraiseService fundraiseService;
+
+    @Autowired
+    private MediaService mediaService;
 
     @Override
     public String createFundraise(final FundraiseDTO fundRaiseDTO, String user) throws BlissofgivingClientException {

@@ -47,7 +47,8 @@ public class S3ServiceImpl implements S3Service {
 			final File file = convertMultiPartFileToFile(multipartFile);
 			PutObjectResult result = uploadFileToS3Bucket(getBucketName(), file);
 			file.delete();  // To remove the file locally created in the project folder.
-			return result.getMetadata().getUserMetadata().get("fileName");
+			String fileName=result.getMetadata().getUserMetadata().get("fileName");
+			return getFileFromS3Bucket(fileName);
 		} catch (final AmazonServiceException ex) {
 			throw ex;
 		}

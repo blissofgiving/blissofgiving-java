@@ -1,13 +1,11 @@
 package com.blissofgiving.client.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import java.sql.Timestamp;
 
 public class MediaDTO {
 
     private String title;
-    private String mediaSysGuid;
+    private String mediaLink;
     private String origin;
     private String sourceSysGuid;
     private String lastUpdateUser;
@@ -21,12 +19,12 @@ public class MediaDTO {
         this.title = title;
     }
 
-    public String getMediaSysGuid() {
-        return mediaSysGuid;
+    public String getMediaLink() {
+        return mediaLink;
     }
 
-    public void setMediaSysGuid(String mediaSysGuid) {
-        this.mediaSysGuid = mediaSysGuid;
+    public void setMediaLink(String mediaLink) {
+        this.mediaLink = mediaLink;
     }
 
     public String getOrigin() {
