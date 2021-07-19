@@ -1,13 +1,19 @@
 package com.blissofgiving.service.beneficiary.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blissofgiving.client.dto.BeneficiaryDTO;
+import com.blissofgiving.client.dto.BeneficiaryPaymentDTO;
 import com.blissofgiving.dynamodbmodel.Beneficiary;
+import com.blissofgiving.dynamodbmodel.BeneficiaryPayment;
 import com.blissofgiving.exception.BlissofgivingClientException;
 import com.blissofgiving.exception.BlissofgivingServiceException;
+import com.blissofgiving.paymentgetway.PaymentService;
 import com.blissofgiving.service.beneficiary.api.BeneficiaryClientService;
 import com.blissofgiving.service.beneficiary.api.BeneficiaryService;
 
@@ -16,6 +22,9 @@ public class BeneficiaryClientServiceImpl implements BeneficiaryClientService {
 
     @Autowired
     private BeneficiaryService beneficiaryService;
+
+    @Autowired
+    PaymentService paymentService;
 
     @Override
     public String createBeneficiary(final BeneficiaryDTO beneficiaryDTO) throws BlissofgivingServiceException {
@@ -34,6 +43,27 @@ public class BeneficiaryClientServiceImpl implements BeneficiaryClientService {
 
         BeneficiaryDTO beneficiaryDTO = new BeneficiaryDTO();
         BeanUtils.copyProperties(beneficiary, beneficiaryDTO);
+        return beneficiaryDTO;
+    }
+
+    @Override
+    public BeneficiaryDTO getBeneficiaryWithPaymentById(String beneficiarySysGuid, String userId) throws BlissofgivingClientException {
+        // Get beneficiary info
+        Beneficiary beneficiary = beneficiaryService.getBeneficiaryById(beneficiarySysGuid);
+        BeneficiaryDTO beneficiaryDTO = new BeneficiaryDTO();
+        BeanUtils.copyProperties(beneficiary, beneficiaryDTO);
+
+        //Get beneficiary payments
+        List<BeneficiaryPayment> beneficiaryPayments = paymentService.getBeneficiaryPayments(beneficiarySysGuid);
+
+        List<BeneficiaryPaymentDTO> beneficiaryPaymentDTOs = new ArrayList<>();
+        BeneficiaryPaymentDTO beneficiaryPaymentDTO = new BeneficiaryPaymentDTO();
+        beneficiaryPayments.forEach(beneficiaryPayment -> {
+            BeanUtils.copyProperties(beneficiaryPayment, beneficiaryPaymentDTO);
+            beneficiaryPaymentDTOs.add(beneficiaryPaymentDTO);
+        });
+        beneficiaryDTO.setBeneficiaryPaymentDTOs(beneficiaryPaymentDTOs);
+
         return beneficiaryDTO;
     }
 

@@ -1,7 +1,5 @@
 package com.blissofgiving.client.controller;
 
-import java.util.Currency;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

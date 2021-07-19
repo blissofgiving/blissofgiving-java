@@ -28,6 +28,13 @@ public class BeneficiaryController {
 		return beneficiaryDTO;
 	}
 
+	@RequestMapping(path = "/api/rest/v1/beneficiary/payments", method = RequestMethod.GET)
+	public BeneficiaryDTO getBeneficiaryWithPaymentById(@RequestParam(value = "beneficiarySysGuid") String beneficiarySysGuid, HttpServletRequest request) throws BlissofgivingClientException {
+		String userId = request.getUserPrincipal().getName();
+		BeneficiaryDTO beneficiaryDTO = beneficiaryClientService.getBeneficiaryWithPaymentById(beneficiarySysGuid, userId);
+		return beneficiaryDTO;
+	}
+
 	@RequestMapping(path = "/api/rest/v1/beneficiary", method = RequestMethod.POST)
 	public String createBeneficiary(@RequestBody BeneficiaryDTO beneficiaryDTO, HttpServletRequest request ){
 		return beneficiaryClientService.createBeneficiary(beneficiaryDTO);

@@ -1,6 +1,7 @@
 package com.blissofgiving.client.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class BeneficiaryDTO {
 
@@ -14,6 +15,7 @@ public class BeneficiaryDTO {
     private String lastUpdateUser;
     private Date createdDate;
     private Date lastUpdateDate;
+    private List<BeneficiaryPaymentDTO> beneficiaryPaymentDTOs;
 
     public String getBeneficiarySysGuid() {
         return beneficiarySysGuid;
@@ -94,4 +96,13 @@ public class BeneficiaryDTO {
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
     }
+
+    public List<BeneficiaryPaymentDTO> getBeneficiaryPaymentDTOs() {
+        return beneficiaryPaymentDTOs;
+    }
+
+    public void setBeneficiaryPaymentDTOs(List<BeneficiaryPaymentDTO> beneficiaryPaymentDTOs) {
+        this.beneficiaryPaymentDTOs = beneficiaryPaymentDTOs;
+    }
+
 }

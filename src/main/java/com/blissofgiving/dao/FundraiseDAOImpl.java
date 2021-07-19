@@ -44,6 +44,7 @@ public class FundraiseDAOImpl implements FundraiseDAO {
 
 	@Override
 	public void updateFundraise(Fundraise fundraise){
+
 		getDynamoDBMapper().save(fundraise);
 	}
 

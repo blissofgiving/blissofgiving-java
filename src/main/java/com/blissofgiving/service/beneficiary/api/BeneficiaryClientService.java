@@ -12,4 +12,6 @@ public interface BeneficiaryClientService {
     void updateBeneficiary(BeneficiaryDTO beneficiaryDTO, String userId) throws BlissofgivingClientException;
 
     void deleteBeneficiary(String beneficiarySysGuid) throws  BlissofgivingClientException;
+
+    BeneficiaryDTO getBeneficiaryWithPaymentById(String beneficiarySysGuid, String userId) throws BlissofgivingClientException;
 }
