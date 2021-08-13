@@ -34,6 +34,9 @@ dependencies {
 	implementation 'com.amazonaws:aws-java-sdk-dynamodb:1.11.506'
 	implementation 'com.github.derjust:spring-data-dynamodb:5.1.0'
 
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
 	//Aws Secret manager
 	implementation 'com.amazonaws:aws-java-sdk-secretsmanager:1.11.549'
 	//Stripe payment gateway

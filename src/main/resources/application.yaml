@@ -9,7 +9,7 @@ aws:
     user:
       accesskey: ${aws.system.user.accesskey}
       secretkey: ${aws.system.user.secretkey}
-  region: us-east-2
+  region: us-east-1
   accessKey: ${AWS_ACCESS_KEY}
   secretKey: ${AWS_SECRET_KEY}
 spring:

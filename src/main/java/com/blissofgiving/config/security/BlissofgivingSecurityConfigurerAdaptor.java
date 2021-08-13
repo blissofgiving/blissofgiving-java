@@ -3,7 +3,6 @@ package com.blissofgiving.config.security;
 
 import java.util.Arrays;
 
-import com.blissofgiving.filter.BlissofgivingRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,62 +20,63 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.blissofgiving.filter.BlissofgivingRequestFilter;
+
 @EnableWebSecurity
 public class BlissofgivingSecurityConfigurerAdaptor extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
-    @Autowired
-    private BlissofgivingUserDetailServiceImpl blissofgivingUserDetailService;
+	@Autowired
+	BlissofgivingRequestFilter blissofgivingRequestFilter;
+	@Autowired
+	private BlissofgivingUserDetailServiceImpl blissofgivingUserDetailService;
 
-    @Autowired
-    BlissofgivingRequestFilter blissofgivingRequestFilter;
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(blissofgivingUserDetailService);
+	}
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(blissofgivingUserDetailService);
-    }
+	@Override
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable()
+				.cors().configurationSource(corsConfigurationSource())
+				.and()
+				.authorizeRequests()
+				.antMatchers("/v2/api-docs", "/swagger-ui.html", "/api/rest/v1/token", "/index.html", "/api/rest/v1/payment", "/api/rest/v1/charge", "/payment.html", "/templates/payment.html", "/success.html").permitAll() //Except mentioned here remaining need a JWT token
+				.anyRequest().authenticated()//
+				.and().exceptionHandling()//
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .cors().configurationSource(corsConfigurationSource())
-                .and()
-                .authorizeRequests()
-                .antMatchers("/api/rest/v1/token", "/index.html", "/api/rest/v1/payment", "/api/rest/v1/charge", "/payment.html", "/templates/payment.html", "/success.html").permitAll() //Except mentioned here remaining need a JWT token
-                .anyRequest().authenticated()//
-                .and().exceptionHandling()//
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.addFilterBefore(blissofgivingRequestFilter, UsernamePasswordAuthenticationFilter.class);
+	}
 
-        http.addFilterBefore(blissofgivingRequestFilter, UsernamePasswordAuthenticationFilter.class);
-    }
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**").allowedMethods("*");
+	}
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("*");
-    }
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://blissofgiving-react-app.s3-website.us-east-2.amazonaws.com"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		//configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+		configuration.setAllowCredentials(Boolean.TRUE);
+		//configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"));
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://blissofgiving-react-app.s3-website.us-east-2.amazonaws.com"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        //configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
-        configuration.setAllowCredentials(Boolean.TRUE);
-        //configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 }
