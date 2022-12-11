@@ -51,6 +51,12 @@ dependencies {
 
 	//AWS Secret Manager
 	implementation 'com.amazonaws:aws-java-sdk-secretsmanager:1.11.549'
+
+	//Swagger
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+
 	//Test
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
