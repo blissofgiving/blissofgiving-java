@@ -20,7 +20,7 @@ public class User {
 	@DynamoDBHashKey(attributeName = "USER_ID")
 	private String userId;
 
-	@DynamoDBAttribute(attributeName = "USER_TYE")
+	@DynamoDBAttribute(attributeName = "USER_TYPE")
 	private String userType;
 
 	@DynamoDBAttribute(attributeName = "PASSWORD")

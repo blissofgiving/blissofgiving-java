@@ -18,10 +18,10 @@ import com.stripe.model.Charge;
 
 @Service
 public class PaymentServiceImpl implements PaymentService{
-	@Value("${stripe.apikey}")
+	@Value("")
 	private String stripeApiKey;
 
-	@Value("${stripe.secretkey}")
+	@Value("")
 	private String stripeSecretKey;
 
 	@Autowired

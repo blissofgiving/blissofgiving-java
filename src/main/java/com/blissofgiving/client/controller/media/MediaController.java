@@ -1,15 +1,17 @@
 package com.blissofgiving.client.controller.media;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.blissofgiving.client.dto.MediaDTO;
-import com.blissofgiving.model.Photos;
-import com.blissofgiving.service.media.api.MediaService;
 import com.blissofgiving.service.media.impl.MediaClientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 @RestController
 @CrossOrigin(origins = {"http://blissofgiving-react-app.s3-website.us-east-2.amazonaws.com"})

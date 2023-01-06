@@ -1,11 +1,6 @@
 package com.blissofgiving.dynamodbmodel;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAutoGenerateStrategy;

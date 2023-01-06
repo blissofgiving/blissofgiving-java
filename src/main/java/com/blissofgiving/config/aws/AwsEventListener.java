@@ -38,23 +38,23 @@ public class AwsEventListener implements ApplicationListener<ApplicationPrepared
 	@Override
 	public void onApplicationEvent(ApplicationPreparedEvent event) {
 		// Get username and password from AWS Secret Manager using secret name
-		String secretJson = getSecret();
-		String systemUserAccessKey = getString(secretJson, "aws.system.user.accesskey");
-		String systemUserSecretKey = getString(secretJson, "aws.system.user.secretkey");
-		String dynamoAccesskey = getString(secretJson, "aws.dynamo.accesskey");
-		String dynamoSecretkey = getString(secretJson, "aws.dynamo.secretkey");
-		String s3BucketName = getString(secretJson, "aws.s3.bucketName");
-		String stripeApiKey = getString(secretJson, "stripe.apikey");
-		String stripeSecretKey = getString(secretJson, "stripe.secretkey");
-		ConfigurableEnvironment environment = event.getApplicationContext().getEnvironment();
-		Properties props = new Properties();
-		System.setProperty("aws.system.user.accesskey", systemUserAccessKey);
-		System.setProperty("aws.system.user.secretkey", systemUserSecretKey);
-		System.setProperty("aws.dynamo.accesskey", dynamoAccesskey);
-		System.setProperty("aws.dynamo.secretkey", dynamoSecretkey);
-		System.setProperty("aws.s3.bucketName", s3BucketName);
-		System.setProperty("stripe.apikey", stripeApiKey);
-		System.setProperty("stripe.secretkey", stripeSecretKey);
+//		String secretJson = getSecret();
+//		String systemUserAccessKey = getString(secretJson, "aws.system.user.accesskey");
+//		String systemUserSecretKey = getString(secretJson, "aws.system.user.secretkey");
+//		String dynamoAccesskey = getString(secretJson, "aws.dynamo.accesskey");
+//		String dynamoSecretkey = getString(secretJson, "aws.dynamo.secretkey");
+//		String s3BucketName = getString(secretJson, "aws.s3.bucketName");
+//		//String stripeApiKey = getString(secretJson, "stripe.apikey");
+//		//String stripeSecretKey = getString(secretJson, "stripe.secretkey");
+//		ConfigurableEnvironment environment = event.getApplicationContext().getEnvironment();
+//		Properties props = new Properties();
+//		System.setProperty("aws.system.user.accesskey", systemUserAccessKey);
+//		System.setProperty("aws.system.user.secretkey", systemUserSecretKey);
+//		System.setProperty("aws.dynamo.accesskey", dynamoAccesskey);
+//		System.setProperty("aws.dynamo.secretkey", dynamoSecretkey);
+//		System.setProperty("aws.s3.bucketName", s3BucketName);
+		//System.setProperty("stripe.apikey", stripeApiKey);
+		//System.setProperty("stripe.secretkey", stripeSecretKey);
 	}
 
 	private String getSecret() {

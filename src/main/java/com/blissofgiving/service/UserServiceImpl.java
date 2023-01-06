@@ -1,21 +1,17 @@
 package com.blissofgiving.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.blissofgiving.dao.UserDAO;
 import com.blissofgiving.dynamodbmodel.User;
 import com.blissofgiving.exception.BlissofgivingRecordNotFoundException;
 import com.blissofgiving.exception.BlissofgivingServiceException;
 import com.blissofgiving.exception.BlissofgivingValidationException;
-import com.blissofgiving.repository.UserRepository;
 import com.blissofgiving.service.validator.UserServiceValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository repository;
 
     @Autowired
     UserServiceValidator userServiceValidator;

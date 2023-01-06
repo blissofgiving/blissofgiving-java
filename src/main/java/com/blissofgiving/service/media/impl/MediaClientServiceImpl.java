@@ -1,17 +1,17 @@
 package com.blissofgiving.service.media.impl;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 import com.blissofgiving.client.dto.MediaDTO;
+import com.blissofgiving.dynamodbmodel.BeneficiaryMedia;
 import com.blissofgiving.dynamodbmodel.FundraiseMedia;
-import com.blissofgiving.model.BeneficiaryMedia;
 import com.blissofgiving.service.media.api.BeneficiaryMediaService;
 import com.blissofgiving.service.media.api.FundraiseMediaService;
 import com.blissofgiving.service.media.api.MediaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.sql.Timestamp;
-import java.util.List;
 
 @Service
 public class MediaClientServiceImpl {
@@ -56,7 +56,7 @@ public class MediaClientServiceImpl {
         media.setMediaSysGuid(mediaDTO.getMediaLink());
         media.setBeneficiarySysGuid(mediaDTO.getSourceSysGuid());
         media.setLastUpdateUser(mediaDTO.getLastUpdateUser());
-        media.setLastUpdateTimestamp(new Timestamp(System.currentTimeMillis()));
+        media.setLastUpdateDate(new Timestamp(System.currentTimeMillis()));
         return media;
     }
 
